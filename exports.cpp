@@ -193,6 +193,19 @@ namespace {
       //start timer
       auto t1 = std::chrono::high_resolution_clock::now();
 
+      //write header
+      if (includeHeader){
+        for (int i = 1; i <= colCount; i++){
+          auto sqlType = rs.GetColumn(i).GetFullSQLType();
+          string colName = rs.GetColumn(i).GetName();
+          of << colName;
+          if (i < colCount){
+            of << "\t";
+          }
+        }
+        of << "\n";
+      }      
+
       while (rs++) {
 
         for (int i = 1; i <= colCount; i++){

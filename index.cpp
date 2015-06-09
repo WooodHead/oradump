@@ -70,7 +70,8 @@ int main(int argc, char* argv[]) {
     ("dir", po::value<string>(), "directory where one or more files contain Oracle scripts")
     ("sid", po::value<string>(), "Oracle service name or server instance")
     ("user", po::value<string>(), "Oracle username")
-    ("pass", po::value<string>(), "Oracle password");
+    ("pass", po::value<string>(), "Oracle password")
+    ("header", po::value<bool>(), "Include header in output");
 
 
   po::variables_map vm;
@@ -103,6 +104,9 @@ int main(int argc, char* argv[]) {
   }
   if (vm.count("pass")) {
     oraPass = (vm["pass"].as<string>());
+  }
+  if (vm.count("header")) {
+    includeHeader = (vm["header"].as<bool>());
   }
   
   //-----

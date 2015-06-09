@@ -7,3 +7,8 @@
 /oradump.opensdf
 /oradump.sdf
 /start.cmd
+/concat.sh
+/combo.sql
+/extract-bcp.sh
+/start-bcp.cmd
+/*.log

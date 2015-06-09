@@ -42,4 +42,5 @@ static string directory;
 static string oraService = "test";
 static string oraUser = "scott";
 static string oraPass = "tiger";
+static bool includeHeader = true;
 
