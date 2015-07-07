@@ -11,6 +11,8 @@ using namespace boost::filesystem;
 */
 namespace {
 
+  static std::regex doubleQuotes("\"");
+
   void replaceAll(std::string& str, const std::string& from, const std::string& to) {
     if (from.empty())
       return;
@@ -231,6 +233,9 @@ namespace {
           cell = "\"" + cell + "\"";
           }
           */
+
+          //handle quotes
+          cell = std::regex_replace(cell, doubleQuotes, "");
 
           std::replace(cell.begin(), cell.end(), '\r', '\s');
           std::replace(cell.begin(), cell.end(), '\n', '\s');
