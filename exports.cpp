@@ -1,4 +1,5 @@
 #include "oradump.hpp"
+#include "base64.h"
 
 using namespace std;
 using namespace ocilib;
@@ -193,10 +194,12 @@ namespace {
       //start timer
       auto t1 = std::chrono::high_resolution_clock::now();
 
+      std::map<int, std::string> columns;
       //write header
       if (includeHeader){
         for (int i = 1; i <= colCount; i++){
           auto sqlType = rs.GetColumn(i).GetFullSQLType();
+          columns[i] = sqlType;
           string colName = rs.GetColumn(i).GetName();
           of << colName;
           if (i < colCount){
@@ -209,7 +212,15 @@ namespace {
       while (rs++) {
 
         for (int i = 1; i <= colCount; i++){
+
           auto cell = rs.Get<ostring>(i);
+
+          /**
+          Handle CLOB
+          **/
+          if (columns[i] == "CLOB"){
+            cell = base64_encode((const unsigned char*)cell.c_str(), cell.size());
+          }
 
           /*
           //put double quotes around strings

@@ -131,6 +131,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="base64.cpp" />
     <ClCompile Include="exports.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="index.cpp" />

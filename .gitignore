@@ -12,3 +12,4 @@
 /extract-bcp.sh
 /start-bcp.cmd
 /*.log
+/oradump*.txt
