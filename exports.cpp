@@ -1,5 +1,6 @@
 #include "oradump.hpp"
 #include "base64.h"
+#include <regex>
 
 using namespace std;
 using namespace ocilib;
@@ -28,7 +29,7 @@ namespace {
     if (ifs.is_open()) {
       ifs.seekg(0, ios::beg);
       while (getline(ifs, line)) {
-        ss << line;
+        ss << line << "\n";
       }
 
       dest.assign(ss.str());
